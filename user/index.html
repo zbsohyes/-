@@ -56,11 +56,34 @@
         </footer>
     </div>
     <script src="../res/mui/js/mui.min.js"></script>
-    <script src="../js/jquery-1.12.4.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
     <script>
-        
+        $.ajax({
+            url: '/api/user/queryUserMessage',
+            type: 'get',
+            success: function (info) {
+                $('span.name').text(info.username)
+
+                if (info.error) {
+                    location.href = '/user/login.html?url=' + location.href;
+                }
+            }
+        })
+
+        $('.btn_outLogin').on('click', function () {
+            $.ajax({
+                url: '/api/user/logout',
+                type: 'get',
+                success: function (info) {
+                    if (info.success) {
+                        location.href = '/'
+                    }
+                }
+            })
+        })
 
     </script>
+
 </body>
 
 </html>

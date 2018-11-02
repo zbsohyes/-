@@ -51,5 +51,33 @@
     </footer>
 </div>
 <script src="../res/mui/js/mui.min.js"></script>
+<script>
+    $('form').on('submit', function () {
+        var data = $(this).serialize();
+        $.ajax({
+            url: '/api/user/register',
+            type: 'post',
+            data: data,
+            success: function (info) {
+                if(info.success) {
+                    location.href = '/user/login.html'
+                }
+            }
+        })
+
+        return false;
+    })
+
+    $('.btn_getCode').on('click',function() {
+        $.ajax({
+            url:'/api/user/vCode',
+            type: 'get',
+            success: function(info) {
+               
+            }
+        })
+    })
+
+</script>
 </body>
 </html>
